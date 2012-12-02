@@ -75,6 +75,9 @@ describe('compiler', function(){
         it('trace_monad.roy with expected output', function() {
             expectExecutionToHaveExpectedOutput('good/trace_monad');
         });
+        it('callbackmonad.roy with expected output', function() {
+            expectExecutionToHaveExpectedOutput('good/callbackmonad');
+        });
         it('unicode.roy with expected output', function() {
             expectExecutionToHaveExpectedOutput('good/unicode');
         });

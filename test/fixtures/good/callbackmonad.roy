@@ -1,0 +1,24 @@
+let callbacks = {
+  return: \x ->
+    \callback -> callback x
+  bind: \action1 f ->
+    \callback ->
+      let callback1 = \x ->
+        let action2 = f x
+        action2 callback
+      action1 callback1
+}
+
+let wait seconds = (\callback -> setTimeout callback (seconds * 1000))
+let print x = \callback -> 
+  console.log x
+  callback ()
+let nop _ = _
+
+console.log "starting"
+let program = do callbacks
+  _ <- print "hello"
+  print "world"
+
+program nop
+

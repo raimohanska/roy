@@ -42,7 +42,9 @@ var grammar = {
             ["doBody TERMINATOR", "$$ = $1;"]
         ],
         "doLine": [
-            ["line", "$$ = $1;"],
+            ["statement", "$$ = $1;"],
+            ["expression", n("$$ = new yy.Bind('_', $1);")],
+            ["COMMENT", n("$$ = new yy.Comment($1);")],
             ["IDENTIFIER LEFTARROW expression", n("$$ = new yy.Bind($1, $3);")],
             ["RETURN expression", n("$$ = new yy.Return($2);")]
         ],

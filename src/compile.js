@@ -205,10 +205,11 @@ var compileNodeWithEnv = function(n, env, opts) {
         visitBind: function() {
             var init = n.rest.slice(0, n.rest.length - 1);
             var last = n.rest[n.rest.length - 1];
+						var compiledLast = last ? compileNode(last) : "";
             return "__monad__.bind(" + compileNode(n.value) +
                 ", function(" + n.name + ") {\n" + pushIndent() +
                 _.map(init, compileNode).join(";\n" + getIndent()) + "\n" +
-                getIndent() + "return " + compileNode(last) + "\n" +
+                getIndent() + "return " + compiledLast + "\n" +
                 popIndent() + "});";
         },
         visitDo: function() {
