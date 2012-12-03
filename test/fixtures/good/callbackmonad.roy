@@ -17,7 +17,8 @@ let nop _ = _
 
 console.log "starting"
 let program = do callbacks
-  _ <- print "hello"
+  x <- callbacks.return "hello"
+  print x
   print "world"
 
 program nop
